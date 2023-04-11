@@ -1,0 +1,20 @@
+{
+  "name": "accelerate-playback",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-json": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "esbuild": "^0.17.16",
+    "eslint": "^8.38.0",
+    "rollup": "^3.20.2",
+    "rollup-plugin-esbuild": "^5.0.0",
+    "typescript": "^5.0.4"
+  },
+  "scripts": {
+    "build-watch": "rollup -c rollup.config.mjs --watch",
+    "build": "rollup -c rollup.config.mjs"
+  }
+}
