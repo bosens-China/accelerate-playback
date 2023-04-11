@@ -1,5 +1,7 @@
 # accelerate-playback
 
+> [English](./README_ENGLISH.md)
+
 油猴倍速播放插件，使用前提必须安装浏览器拓展程序
 
 - https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd
