@@ -1,22 +1,21 @@
-import { MAXIMUM_SPEED, PLAYER } from './constant';
-import { createdElement, Props } from './ui';
-import { storage } from './utils/storage';
-import { name } from '../package.json';
+import { MAXIMUM_SPEED, PLAYER } from "./constant";
+import { createdElement, Props } from "./ui";
+import { storage } from "./utils/storage";
 
 export const core = (video: HTMLVideoElement) => {
   const element = createdElement();
-  if (video.classList.contains(name)) {
-    return;
-  }
-  video.classList.add(name);
+
   video.parentNode?.insertBefore(element, video.nextSibling);
   // 设置自动播放
   video.autoplay = true;
   // 监听进度变化
-  video.addEventListener('timeupdate', () => {
-    let { currentSpeed } = storage.get<Pick<Props, 'currentSpeed'>>(PLAYER, {
-      currentSpeed: '1',
+  video.addEventListener("timeupdate", () => {
+    let { currentSpeed } = storage.get<Pick<Props, "currentSpeed">>(PLAYER, {
+      currentSpeed: "1",
     });
+    if (Number.isNaN(+currentSpeed)) {
+      currentSpeed = "1";
+    }
     if (+currentSpeed > MAXIMUM_SPEED) {
       currentSpeed = `${MAXIMUM_SPEED}`;
     }

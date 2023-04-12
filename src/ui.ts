@@ -1,5 +1,6 @@
-import { PLAYER, MAXIMUM_SPEED } from './constant';
-import { storage } from './utils/storage';
+import { PLAYER, MAXIMUM_SPEED } from "./constant";
+import { storage } from "./utils/storage";
+import { verify } from "./utils/verify";
 
 export interface Props {
   currentSpeed: string;
@@ -13,10 +14,26 @@ top: 0;`;
 
 // 生成元素
 export const createdElement = () => {
-  const select = document.createElement('select');
-  const { currentSpeed } = storage.get<Props>(PLAYER, {
-    currentSpeed: '1',
+  const select = document.createElement("select");
+  let { currentSpeed } = storage.get<Props>(PLAYER, {
+    currentSpeed: "1",
   });
+  // 考虑读取的一些异常
+  try {
+    verify({ currentSpeed }, [
+      {
+        currentSpeed: {
+          type: "string",
+          validator(value) {
+            return !Number.isNaN(+value);
+          },
+        },
+      },
+    ]);
+  } catch {
+    currentSpeed = "1";
+  }
+
   storage.set<Props>(PLAYER, {
     currentSpeed,
   });
@@ -25,13 +42,13 @@ export const createdElement = () => {
   Array.from({
     length: MAXIMUM_SPEED,
   }).forEach((_, index) => {
-    const option = document.createElement('option');
+    const option = document.createElement("option");
     option.value = `${index + 1}`;
     option.innerText = `${option.value} 倍速`;
     select.appendChild(option);
   });
   // 监听变化
-  select.addEventListener('change', (e) => {
+  select.addEventListener("change", (e) => {
     const el = e.target as HTMLSelectElement;
     storage.set(PLAYER, {
       currentSpeed: el.value,

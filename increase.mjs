@@ -7,11 +7,11 @@ const __dirname = path.resolve(fileURLToPath(import.meta.url), '../');
 const { version } = JSON.parse(fs.readFileSync(path.join(__dirname, './package.json'), 'utf-8'))
 
 const prefix = `// ==UserScript==
-// @name         Video Speed Controller
-// @namespace    http://tampermonkey.net/
+// @name         中国石油华东视频学习倍速播放工具
+// @namespace    https://github.com/bosens-China/accelerate-playback
 // @version      ${version}
-// @description  Adds a button to control video playback speed
-// @author       ChatGPT
+// @description  倍速播放和支持自动点击下一页
+// @author       yliu
 // @match        https://cj1047-kfkc.webtrn.cn/*
 // @match        http://cj1047-kfkc.webtrn.cn/*
 // @grant        none
