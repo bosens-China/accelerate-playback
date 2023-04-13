@@ -8,6 +8,8 @@ export const core = (video: HTMLVideoElement) => {
   video.parentNode?.insertBefore(element, video.nextSibling);
   // 设置自动播放
   video.autoplay = true;
+  // 默认静音
+  video.muted = true;
   // 监听进度变化
   video.addEventListener("timeupdate", () => {
     let { currentSpeed } = storage.get<Pick<Props, "currentSpeed">>(PLAYER, {
