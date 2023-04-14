@@ -65,9 +65,7 @@ const nextVideo = () => {
 
 // 清理弹窗，会提示学习多久了之类的
 const clear = () => {
-  // https://cj1047-kfkc.webtrn.cn/learnspace/resource/common/js/plugins/scrom/video_studyTimeConfirm.js?v=202004130101
-  // https://cj1047-kfkc.webtrn.cn/learnspace/resource/common/js/plugins/scrom/video_studyTimeConfirm.js?v=202004130101
-  // https://cj1047-kfkc.webtrn.cn/learnspace/resource/common/js/plugins/scrom/video_studyTimeConfirm.js?v=202004130101
+  // https://cj1047-kfkc.webtrn.cn/learnspace/resource/common/js/plugins/scrom/studyTime.js?=20220601
   const iframeScripts = flatten(
     Array.from(document.querySelectorAll("iframe")).map((f) => [
       ...(f.contentWindow?.document.querySelectorAll("script") || []),
@@ -77,11 +75,11 @@ const clear = () => {
   const scripts = [
     ...document.querySelectorAll("script"),
     ...iframeScripts,
-  ].filter((f) => f.src.includes("video_studyTimeConfirm"));
+  ].filter((f) => f.src.includes("studyTime"));
 
   // 移除掉相关的元素
   scripts.forEach((f) => {
-    f.parentElement?.removeChild(f);
+    f.innerHTML = ``;
   });
 };
 
@@ -117,6 +115,8 @@ const checkUp = () => {
       }
     }, 300)
   );
-  clear();
 };
-setInterval(checkUp, 3000);
+setInterval(() => {
+  clear();
+  checkUp();
+}, 3000);

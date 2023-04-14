@@ -18,6 +18,7 @@ The Greasemonkey playback speed extension requires the installation of a browser
 
 - [x] Improve the storage logic and verify boundary cases.
 - [x] Improve the `effect` section to support clicking the next item (for oneself).
+- Support for automatic opening of the sidebar
 
 ## License
 
